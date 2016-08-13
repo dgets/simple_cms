@@ -1,0 +1,25 @@
+<%= error_messages_for(@admin_user) %>
+
+    <table summary="Admin User form fields">
+      <tr>
+	<th><%= f.label(:first_name, "First Name") %></th>
+	<td><%= f.text_field(:first_name) %></td>
+      </tr>
+      <tr>
+	<th><%= f.label(:last_name, "Last Name") %></th>
+	<td><%= f.text_field(:last_name) %></td>
+      </tr>
+      <tr>
+	<th><%= f.label(:email, "Email Address") %></th>
+	<td><%= f.text_field(:email) %></td>
+      </tr>
+      <tr>
+	<th><%= f.label(:username, "Username") %></th>
+	<td><%= f.text_field(:username) %></td>
+      </tr>
+      <tr>
+	<th><%= f.label(:password, "Password") %></th>
+	<td><%= f.password_field(:password) %></td>
+      </tr>
+    </table>
+

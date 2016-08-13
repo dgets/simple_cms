@@ -1,0 +1,15 @@
+<% @page_title = "Pages" %>
+
+<%= link_to("<< Back to List", {:action => 'index', :subject_id => @subject.id},
+		:class => 'back-link') %>
+
+<div class="pages show">
+  <h2>Page Details</h2>
+
+    <%= @page.id %>: <%= @page.name %> Subject ID: <%= @page.subject_id %>
+    Permalink: <%= @page.permalink %> Position: <%= @page.position %>
+    Visible: <%= @page.visible ? 'Yes' : 'No' %> Created At:
+    <%= @page.created_at %> Updated At: <%= @page.updated_at %>
+
+</div>
+

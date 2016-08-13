@@ -1,0 +1,51 @@
+<% @page_title = "Pages" %>
+
+<%= link_to("<< Back to Subjects", {:controller => 'subjects'}, 
+	:class => 'back-link') %>
+
+<div class="pages index">
+  <h2>Pages</h2>
+
+  <%= link_to("Add New page", {:action => 'new', :subject_id => @subject.id}, 
+	:class => 'action new') %>
+
+  <table class="listing" summary="Pages List">
+    <tr>
+      <th>&nbsp;</th>
+      <th>Subject</th>
+      <th>Name</th>
+      <th>Permalink</th>
+      <th>Position</th>
+      <th>Visible</th>
+      <th>Created At</th>
+      <th>Updated At</th>
+      <th>Action</th>
+    </tr>
+    <% @pages.each do |p| %>
+    <tr>
+      <td><%= p.id %></td>
+      <td><%= p.subject.name if p.subject %></td>
+      <td><%= p.name %></td>
+      <td><%= p.permalink %></td>
+      <td><%= p.position %></td>
+      <td><%= status_tag(p.visible) %></td>
+      <td><%= p.created_at %></td>
+      <td><%= p.updated_at %></td>
+      <td><%= link_to("View Sections", {:controller => 'sections',
+					:page_id => p.id},
+						:class => 'action show') %>
+	  <%= link_to("Show", {:action => 'show', :id => p.id, 
+			       :subject_id => @subject.id}, 
+						:class => 'action show') %>
+          <%= link_to("Edit", {:action => 'edit', :id => p.id,
+			       :subject_id => @subject.id}, 
+						:class => 'action edit') %>
+	  <%= link_to("Delete", {:action => 'delete', :id => p.id,
+				 :subject_id => @subject.id}, 
+						:class => 'action delete') %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+</div>
+

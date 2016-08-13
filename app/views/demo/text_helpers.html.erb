@@ -1,0 +1,80 @@
+<%
+ text = "This is some long sample text.  It includes line breaks\n and double-line breaks.\n\n It rambles on and on and on.\n\nUntil we get to this last line."
+%>
+
+<h2>word_wrap</h2>
+<!--
+    NOTE: word_wrap utilizes \n to break up the text onto new lines; this is
+    NOT respected by HTML rendering, unless it occurs within <pre> tags!
+  -->
+
+<%= word_wrap(text, :line_width => 30) %>
+<hr />
+
+<h2>simple_format</h2>
+<!--
+    NOTE: Instead of using <pre> tags, you can use simple_format, which
+    converts single \n into <br /> tags and double \n into paragraphs wrapped
+    in <p> tags
+  -->
+
+<%= simple_format(text) %>
+<hr />
+
+<h2>simple_format + word_wrap</h2>
+<%= simple_format(word_wrap(text, :line_width => 30)) %>
+<hr />
+
+<h2>truncate</h2>
+<!--
+    :omission defaults to "..."; specifying something else is just as you'd
+    think, or you can set it to 'nil' in order to have no omission string
+  -->
+
+<%= truncate(text, :length => 40, :omission => "...") %>
+<hr />
+
+<h2>excerpt</h2>
+<!--
+    excerpt locates the specified word (ie 'includes'), and then snips out
+    :radius characters before and after it for inclusion in the displayed text
+  -->
+
+<%= excerpt(text, 'includes', :radius => 7, :omission => "...") %>
+<hr />
+
+<h2>highlight</h2>
+<%= highlight(text, 'sample text') %>
+<!--
+    NOTE: In the following bit, \1 is a placeholder for the words found in the
+    array when highlighting more than one particular selection
+  -->
+
+<%= highlight(text, ['sample', 'rambles'], :highlighter => '<em>\1</em>') %>
+<hr />
+
+<h2>pluralize</h2>
+<%= "student".pluralize %><br />
+<%= "ox".pluralize %><br />
+<br />
+<%= pluralize(2, 'product') %><br />
+<br />
+<% [0, 1, 20].each do |n| %>
+  <%= pluralize(n, 'product') %><br />
+  <%= pluralize(n, 'octopus') %><br />
+  <!--
+      NOTE: In the following line of code, the 3rd argument to pluralize is
+      the plural form of the word, should it not be found in ruby's
+      pluralization directory (or if it's a made up word, etc)
+    -->
+
+  <%= pluralize(n, 'snipe', 'snope') %><br />
+<% end %>
+<hr />
+
+<h2>cycle</h2>
+<% 5.times do %>
+  <%= cycle('red', 'green', 'blue') %><br />
+<% end %>
+
+
